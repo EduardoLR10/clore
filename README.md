@@ -16,6 +16,7 @@ You may want to run `clj -M:dev:cider` or `clj -M:dev:nrepl` instead depending
 on your editor of choice.
 
 Run in production mode:
+
     $ clojure -M:run
 
 Format the code:
