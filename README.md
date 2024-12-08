@@ -5,6 +5,10 @@ A demo application using Clojure.
 This project is inspired by rexim's [tore project](https://github.com/rexim/tore); an application of reminders and notifications.
 Our focus is on showing the reminders in the browser via server-side rendered HTML.
 
+## Resources
+
+We are currently grabbing our CSS from [rexim's project](https://github.com/rexim/tore/blob/main/resources/css/main.css).
+
 ## Usage
 
 Run the development REPL and start the server:
