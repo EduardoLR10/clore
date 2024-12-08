@@ -2,10 +2,10 @@
 
 A demo application using Clojure.
 
-## Usage
+This project is inspired by rexim's [tore project](https://github.com/rexim/tore); an application of reminders and notifications.
+Our focus is on showing the reminders in the browser via server-side rendered HTML.
 
-FIXME: explain things, add license, basically make this an actual thing.
-For now, refer to the docstrings in the code for details.
+## Usage
 
 Run the development REPL and start the server:
 
@@ -27,23 +27,9 @@ You can also run `clojure -M:format` for additional options. We use `cljstyle`
 for formatting, and it is recommended that you install the CLI version if
 you plan on hooking this up to your editor.
 
-Run the tests:
+Run this command to build an uberjar:
 
-    $ clojure -T:build test
-
-TODO: add tests.
-
-Run the project's CI pipeline and build an uberjar:
-
-    $ clojure -T:build ci
-
-This will produce an updated `pom.xml` file with synchronized dependencies inside the `META-INF`
-directory inside `target/classes` and the uberjar in `target`. You can update the version (and SCM tag)
-information in generated `pom.xml` by updating `build.clj`.
-
-If you don't want the `pom.xml` file in your project, you can remove it. The `ci` task will
-still generate a minimal `pom.xml` as part of the `uber` task, unless you remove `version`
-from `build.clj`.
+    $ clojure -T:build uberjar
 
 Run that uberjar:
 

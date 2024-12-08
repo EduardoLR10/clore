@@ -1,5 +1,4 @@
 (ns build
-  (:refer-clojure :exclude [test])
   (:require
     [clojure.tools.build.api :as b]))
 
@@ -7,18 +6,6 @@
 (def version "0.1.0-SNAPSHOT")
 (def main 'clojure-demo.main)
 (def class-dir "target/classes")
-
-(defn test
-  "Run all the tests."
-  [opts]
-  (let [basis (b/create-basis {:aliases [:test]})
-        cmds (b/java-command
-               {:basis basis
-                :main 'clojure.main
-                :main-args (-> basis :aliases :test :main-opts)})
-        {:keys [exit]} (b/process cmds)]
-    (when-not (zero? exit) (throw (ex-info "Tests failed" {}))))
-  opts)
 
 (defn- uber-opts [opts]
   (assoc opts
@@ -30,10 +17,9 @@
     :src-dirs ["src"]
     :ns-compile [main]))
 
-(defn ci
+(defn uberjar
   "Run the CI pipeline of tests (and build the uberjar)."
   [opts]
-  (test opts)
   (b/delete {:path "target"})
   (let [opts (uber-opts opts)]
     (println "\nCopying source...")
