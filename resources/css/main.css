@@ -24,22 +24,22 @@ p {
 
 /* unvisited link */
 a:link {
-  color: hotpink;
+  color: ##91dc47;
 }
 
 /* visited link */
 a:visited {
-  color: hotpink;
+  color: ##91dc47;
 }
 
 /* mouse over link */
 a:hover {
-  color: hotpink;
+  color: ##91dc47;
 }
 
 /* selected link */
 a:active {
-  color: hotpink;
+  color: ##91dc47;
 } 
 
 h1 {
@@ -59,8 +59,9 @@ h2 {
     padding-top: 20px;
 }
 
+
 ul {
-    list-style-type: circle;
+    list-style-type: square;
 }
 
 li {

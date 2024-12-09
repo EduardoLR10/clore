@@ -47,7 +47,7 @@ table {
     border-spacing: 0;
 }
 
-/* CSS */
+/* https://getcssscan.com/css-buttons-examples */
 .button-82-pushable {
     font-family: 'Roboto', sans-serif;
     float:left;
@@ -93,7 +93,7 @@ table {
     width: 100%;
     height: 100%;
     border-radius: 12px;
-    background: #98275f;
+    background: #91dc47;
 }
 
 .button-82-front {
@@ -106,7 +106,7 @@ table {
     border-radius: 12px;
     font-size: 1.1rem;
     color: white;
-    background: hotpink;
+    background: #63b132;
     will-change: transform;
     transform: translateY(-4px);
     transition:
@@ -161,5 +161,109 @@ table {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    /* justify-content: space-between; */
+}
+
+.reminder-component {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.reminder-items {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+
+/* http://jsfiddle.net/TGzng/8/ */
+input[type=text]
+{
+    color: black;
+    height: 28px;
+    padding-left: 10px;
+    text-decoration: none;
+    background-image: url('https://i.sstatic.net/pbpVI.png');
+    background-repeat: repeat-x;
+    border-radius: 5px; /*up to date browsers support this, but you can add prefixes if you want*/
+
+    border: 0;
+}
+
+/* https://codingartistweb.com/2021/07/custom-input-date-css-tutorial/ */
+input[type="date"]{
+    background-color: #63b132;
+    padding-left: 10px;
+    font-family: "Roboto",monospace;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+::-webkit-calendar-picker-indicator{
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+input[type=submit] {
+    font-family: 'Roboto', sans-serif;
+    float:left;
+    display: block;
+    position: relative;
+    padding: 4px 20px;
+    border-radius: 12px;
+    font-size: 1.15rem;
+    color: white;
+    background: #63b132;
+    border-color: #91dc47;
+}
+
+.delete-button {
+    font-family: 'Roboto', sans-serif;
+    float:left;
+    display: block;
+    position: relative;
+    padding: 4px 20px;
+    border-radius: 12px;
+    font-size: 1.15rem;
+    color: white;
+    background: #90b4fe;
+    border-color: #5881d8;
+}
+
+.reminder-title{
+    font-weight: bold;
+    color: #63b132;
+    padding-right: 15px;
+}
+
+.reminder-until{
+    font-weight: bold;
+    color: #63b132;
+    padding-right: 10px;
+}
+
+.registered-title-label{
+    font-weight: bold;
+    color: white;
+}
+
+.registered-title{
+    font-weight: bold;
+    color: #5881d8;
+}
+
+.registered-date-label{
+    font-weight: bold;
+    color: white;
+}
+
+.registered-date{
+    font-weight: bold;
+    color: #5881d8;
 }
