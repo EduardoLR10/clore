@@ -15,7 +15,7 @@ Our focus is on showing the reminders in the browser via server-side rendered HT
 
 ## Resources
 
-We are currently grabbing our CSS from [rexim's project](https://github.com/rexim/tore/blob/main/resources/css/main.css).
+We are currently grabbing our CSS from [rexim's project](https://github.com/rexim/tore/blob/main/resources/css).
 
 ## Usage
 
