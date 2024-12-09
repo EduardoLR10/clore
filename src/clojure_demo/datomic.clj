@@ -13,5 +13,16 @@
     conn))
 
 (def ^{:init/tags #{:datomic/schema}} schema
-  ;; TODO: fill this in
-  [])
+  [{:db/ident     :reminder/id
+    :db/unique    :db.unique/identity
+    :db/valueType :db.type/uuid
+    :db/cardinality :db.cardinality/one}
+   {:db/ident     :reminder/title
+    :db/valueType :db.type/string
+    :db/cardinality :db.cardinality/one}
+   {:db/ident     :reminder/created-at
+    :db/valueType :db.type/instant
+    :db/cardinality :db.cardinality/one}
+   {:db/ident     :reminder/until
+    :db/valueType :db.type/instant
+    :db/cardinality :db.cardinality/one}])
