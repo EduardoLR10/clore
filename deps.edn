@@ -12,7 +12,7 @@
                         cljsjs/react-dom]}}
 
  :aliases
- {:run {:main-opts ["-m" "clojure-demo.main"]}
+ {:run {:main-opts ["-m" "clore.main"]}
   :dev
   {:extra-paths ["dev"]
    :extra-deps

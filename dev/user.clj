@@ -1,7 +1,7 @@
 (ns user
   (:require
     [clj-reload.core :as reload]
-    [clojure-demo.core]
+    [clore.core]
     [clojure.java.io :as io]
     [clojure.repl :refer :all]
     [datomic.api :as d]
@@ -36,7 +36,7 @@
   []
   (send system
     #(or %
-       (-> (discovery/scan '[clojure-demo])
+       (-> (discovery/scan '[clore])
          (discovery/from-namespaces [(the-ns (ns-name *ns*))])
          init/start)))
   :go)
@@ -65,7 +65,7 @@
 
 (def ^{:init/tags #{:datomic/uri}} datomic-uri
   "URI used by Datomic. For development, we use an in-memory instance."
-  "datomic:mem://clojure-demo")
+  "datomic:mem://clore")
 
 (def ^{:init/tags #{:datomic/fixtures}} fixtures
   "Fixtures to insert initial data into the DB."

@@ -1,16 +1,16 @@
-# clojure-demo
+# clore
 
 A demo application using Clojure.
 
-This project is inspired by rexim's [tore project](https://github.com/rexim/tore); an application of reminders and notifications.
-Our focus is on showing the reminders in the browser via server-side rendered HTML.
+This project is inspired by [rexim's tore project](https://github.com/rexim/tore); an application of reminders and notifications.
+Our focus is on showing the **reminders** in the browser via server-side rendered HTML.
 
 ## Libraries
 
-- [ring](https://github.com/ring-clojure/ring) - HTTP Framework
-- [http-kit](https://http-kit.github.io/) - HTTP Server
 - [datomic](https://www.datomic.com/) - Database Management
+- [http-kit](https://http-kit.github.io/) - HTTP Server
 - [init](https://github.com/ferdinand-beyer/init) - Dependency Injection
+- [ring](https://github.com/ring-clojure/ring) - HTTP Framework
 - [rum](https://github.com/tonsky/rum) - HTML Rendering
 
 ## Resources
@@ -45,4 +45,4 @@ Run this command to build an uberjar:
 
 Run that uberjar:
 
-    $ java -jar target/clojure-demo/clojure-demo-0.1.0-SNAPSHOT.jar
+    $ java -jar target/clore/clore-0.1.0-SNAPSHOT.jar

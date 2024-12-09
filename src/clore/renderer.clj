@@ -1,6 +1,6 @@
-(ns clojure-demo.renderer
+(ns clore.renderer
   (:require
-    [clojure-demo.datomic :as datomic]
+    [clore.datomic :as datomic]
     [datomic.api :as d])
   (:import (java.text SimpleDateFormat)))
 
@@ -44,7 +44,7 @@
     [:head
     [:link {:rel "stylesheet" :href "reset.css"}]
     [:link {:rel "stylesheet" :href "main.css"}]]
-    [:h1 [:a {:style {:color "#90b4fe"} :href "/"} "Clojure Demonstration"]])
+    [:h1 [:a {:style {:color "#90b4fe"} :href "/"} "Clore"]])
    (list [:br] [:br])
    reminder-buttons
    (list [:br] [:br] [:br] [:br])

@@ -2,9 +2,9 @@
   (:require
     [clojure.tools.build.api :as b]))
 
-(def lib 'clojure-demo/clojure-demo)
+(def lib 'clore/clore)
 (def version "0.1.0-SNAPSHOT")
-(def main 'clojure-demo.main)
+(def main 'clore.main)
 (def class-dir "target/classes")
 
 (defn- uber-opts [opts]

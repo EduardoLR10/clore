@@ -1,8 +1,8 @@
-(ns clojure-demo.http
+(ns clore.http
   (:require
    [clj-simple-router.core :as router]
-   [clojure-demo.datomic :as datomic]
-   [clojure-demo.renderer :as renderer]
+   [clore.datomic :as datomic]
+   [clore.renderer :as renderer]
    [datomic.api :as d]
    [org.httpkit.server :as httpkit]
    [ring.middleware.params :refer [wrap-params]]

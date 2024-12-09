@@ -1,4 +1,4 @@
-(ns clojure-demo.datomic
+(ns clore.datomic
   (:require
    [datomic.api :as d])
   (:import (java.time LocalDateTime ZoneId ZoneOffset))
@@ -59,7 +59,7 @@
     :in $ ?current-date
     :where
     [?reminder :reminder/until ?until]
-    [(clojure-demo.datomic/add-days ?current-date 5) ?final-date]
+    [(clore.datomic/add-days ?current-date 5) ?final-date]
     [(< ?until ?final-date)]])
 
 (def long-term-query
@@ -67,7 +67,7 @@
     :in $ ?current-date
     :where
     [?reminder :reminder/until ?until]
-    [(clojure-demo.datomic/add-days ?current-date 5) ?final-date]
+    [(clore.datomic/add-days ?current-date 5) ?final-date]
     [(>= ?until ?final-date)]])
 
 (def term-query
