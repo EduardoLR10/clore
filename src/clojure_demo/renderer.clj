@@ -59,28 +59,33 @@
 
 (defn ^:private render-reminder
   [path {:reminder/keys [id title created-at until]}]
-  [:li 
-   [:div {:class "reminder-component"}
-    [:div {:style {:display "inline"}}
-     [:b {:class "registered-title-label"} "Reminder: "]
-     [:b {:class "registered-title"} title]]
-    [:div {:style {:display "inline"}}
-     [:b {:class "registered-date-label"} "Created at: "]
-     [:b {:class "registered-date"} (render-date created-at)]]
-    [:div {:style {:display "inline"}}
-     [:b {:class "registered-date-label"} "Until: "]
-     [:b {:class "registered-date"} (render-date until)]]
-    [:div {:style {:display "inline-block"}}
-    [:form {:method "post" :action (str "/delete-reminder/" id)}
-     [:input {:type "hidden" :name "path" :required "" :value path}]
-     [:button {:class "delete-button"} "Delete"]]]]])
+  [:tr {:class "space-under"}
+   [:td [:b {:class "registered-title"} title]]
+   [:td [:b {:class "registered-date"} (render-date created-at)]]
+   [:td [:b {:class "registered-date"} (render-date until)]]
+   [:td
+    [:div {:style {:display "flex" :align-items "center" :justify-content "center"}}
+     [:form {:method "post" :action (str "/delete-reminder/" id)}
+      [:input {:type "hidden" :name "path" :required "" :value path}]
+      [:button {:class "delete-button"} "Delete"]]]]])
 
 (defn render-reminders
   [path db query current-date]
-  (prn (d/q query db current-date))
-  (list
-   [:ul
-    (map (partial render-reminder path) (d/q query db current-date))]))
+  (let [items (map (partial render-reminder path) (d/q query db current-date))]
+    (prn items)
+    (if (seq items)
+      (list
+       [:br]
+       [:br]
+       [:br]       
+       [:table 
+        [:tr {:class "space-under"}
+         [:th [:b {:class "registered-title-label"} "Reminder"]]
+         [:th [:b {:class "registered-date-label"} "Created"]]
+         [:th [:b {:class "registered-date-label"} "Until"]]
+         [:th]]
+        items])
+      '())))
 
 (defn short-term-reminders
   [path db current-date]
@@ -89,6 +94,10 @@
 (defn long-term-reminders
   [path db current-date]
   (render-reminders path db datomic/long-term-query current-date))
+
+(defn term-reminders
+  [path db current-date]
+  (render-reminders path db datomic/term-query current-date))
 
 (defn title [text]
   [:h2 {:style {:color "#90b4fe" :text-align "center"}} text])

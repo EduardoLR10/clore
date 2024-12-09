@@ -69,3 +69,7 @@
     [?reminder :reminder/until ?until]
     [(clojure-demo.datomic/add-days ?current-date 5) ?final-date]
     [(>= ?until ?final-date)]])
+
+(def term-query
+  '[:find [(pull ?reminder [:reminder/id :reminder/title :reminder/created-at :reminder/until]) ...]
+     :where [?reminder :reminder/id]])

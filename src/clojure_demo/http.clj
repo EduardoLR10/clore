@@ -70,8 +70,7 @@
        (concat
         (renderer/common-header "/")
         (list (renderer/title "All Reminders"))
-        (renderer/short-term-reminders "/" db current-date)
-        (renderer/long-term-reminders "/" db current-date))))})
+        (renderer/term-reminders "/" db current-date))))})
    "GET /short-term"
    (fn [{{:keys [db]} :datomic}]
      {:status 200

@@ -64,7 +64,20 @@ ul {
     list-style-type: square;
 }
 
-li {
-    font-family: 'Roboto', sans-serif;
-    padding-bottom: 3px;
+tr.space-under>td {
+  padding-bottom: 1.5em;
+}
+
+tr.space-under>th {
+  padding-bottom: 1.5em;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
 }
