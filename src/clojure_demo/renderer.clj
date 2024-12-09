@@ -1,22 +1,34 @@
 (ns clojure-demo.renderer
   (:require
-    [clj-simple-router.core :as router]
     [clojure-demo.datomic :as datomic]
-    [datomic.api :as d]
-    [org.httpkit.server :as httpkit]
-    [ring.middleware.params :refer [wrap-params]]
-    [ring.middleware.resource :refer [wrap-resource]]
-    [rum.core :as rum])
-  (:import (java.time LocalDateTime ZoneId ZoneOffset))
+    [datomic.api :as d])
   (:import (java.text SimpleDateFormat)))
+
+;; <!-- HTML !-->
+;; <button class="button-82-pushable" role="button">
+;;   <span class="button-82-shadow"></span>
+;;   <span class="button-82-edge"></span>
+;;   <span class="button-82-front text">
+;;     Button 82
+;;   </span>
+;; </button>
+
+(defn ^:private reminder-selector
+  [text]
+  [:button {:class "button-82-pushable" :role "button"}
+   [:span {:class "button-82-shadow"}]
+   [:span {:class "button-82-edge"}]
+   [:span {:class "button-82-front text"}
+    text]])
 
 (def reminder-buttons
   (list
-   [:div {:style {:display "inline"}}
+   [:div
+    {:class "selectors"}
     [:form {:action "/short-term"}
-     [:button "Short Term Reminders"]]
+     (reminder-selector "Short Term")]
     [:form {:action "/long-term"}
-     [:button "Long Term Reminders"]]]))
+     (reminder-selector "Long Term")]]))
 
 (defn ^:private add-reminder-component
   [path]
@@ -38,23 +50,28 @@
   [path]
   (concat
    (list
-   [:head
+    [:head
     [:link {:rel "stylesheet" :href "reset.css"}]
     [:link {:rel "stylesheet" :href "main.css"}]]
-   [:h1 [:a {:href "/"} "Clojure Demonstration"]])
+    [:h1 [:a {:href "/"} "Clojure Demonstration"]])
+   (list [:br] [:br])
    reminder-buttons
    (list [:br] [:br])
    (list
     [:div
      (add-reminder-component path)])))
 
+(defn ^:private render-date [date]
+  (let [df (SimpleDateFormat/new "EEE MMM d HH:mm:ss zzz yyyy")]
+    (.format (java.text.SimpleDateFormat. "MM/dd/yyyy") (.parse df (str date)))))
+
 (defn ^:private render-reminder
   [path {:reminder/keys [id title created-at until]}]
   [:li
    [:div {:style {:display "inline"}}
-    title " "
-    created-at " "
-    until "   "
+    [:b {:style {:font-weight "bold"}} title] " "
+    (render-date created-at) " "
+    (render-date until) "   "
     [:div {:style {:display "inline-block"}}
     [:form {:method "post" :action (str "/delete-reminder/" id)}
      [:input {:type "hidden" :name "path" :required "" :value path}]
