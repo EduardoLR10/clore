@@ -1,6 +1,8 @@
 (ns clojure-demo.datomic
   (:require
-    [datomic.api :as d]))
+   [datomic.api :as d])
+  (:import (java.time LocalDateTime ZoneId ZoneOffset))
+  (:import (java.text SimpleDateFormat)))
 
 (defn connect
   {:init/inject [:datomic/uri :datomic/schema :datomic/fixtures]
@@ -26,3 +28,44 @@
    {:db/ident     :reminder/until
     :db/valueType :db.type/instant
     :db/cardinality :db.cardinality/one}])
+
+(defn ^:private string->date
+  [str-date]
+  (prn str-date)
+  (-> (SimpleDateFormat/new "yyyy-MM-dd") (.parse str-date)))
+
+(defn add-reminder
+  [conn {:keys [title until]} current-date]
+  @(d/transact conn
+               [{:reminder/id (d/squuid)
+                 :reminder/title title
+                 :reminder/created-at current-date
+                 :reminder/until (string->date until)}]))
+
+(defn delete-reminder
+  [conn id]
+  @(d/transact conn [[:db/retractEntity [:reminder/id id]]]))
+
+(defn add-days [date days]
+  (-> date
+      .toInstant
+      (LocalDateTime/ofInstant (ZoneId/of "UTC"))
+      (.plusDays days)
+      (.toInstant ZoneOffset/UTC)
+      java.util.Date/from))
+
+(def short-term-query
+  '[:find [(pull ?reminder [:reminder/id :reminder/title :reminder/created-at :reminder/until]) ...]
+    :in $ ?current-date
+    :where
+    [?reminder :reminder/until ?until]
+    [(clojure-demo.datomic/add-days ?current-date 5) ?final-date]
+    [(< ?until ?final-date)]])
+
+(def long-term-query
+  '[:find [(pull ?reminder [:reminder/id :reminder/title :reminder/created-at :reminder/until]) ...]
+    :in $ ?current-date
+    :where
+    [?reminder :reminder/until ?until]
+    [(clojure-demo.datomic/add-days ?current-date 5) ?final-date]
+    [(>= ?until ?final-date)]])
