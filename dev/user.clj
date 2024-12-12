@@ -1,9 +1,9 @@
 (ns user
   (:require
     [clj-reload.core :as reload]
-    [clore.core]
     [clojure.java.io :as io]
     [clojure.repl :refer :all]
+    [clore.core]
     [datomic.api :as d]
     [init.core :as init]
     [init.discovery :as discovery]
@@ -98,10 +98,10 @@
     (when (= mode :auto) (map io/file dirs))))
 
 (defn delete-datomic
- "Takes a Datomic URI, stops the system and deletes the database.
+  "Takes a Datomic URI, stops the system and deletes the database.
   Don't call this yourself, use hard-reset instead."
- {:init/inject [:partial :datomic/uri]}
- [uri]
- (stop)
- (await system)
- (d/delete-database uri))
+  {:init/inject [:partial :datomic/uri]}
+  [uri]
+  (stop)
+  (await system)
+  (d/delete-database uri))
