@@ -6,8 +6,7 @@
 
 (defn connect
   {:init/inject [:datomic/uri :datomic/schema :datomic/fixtures]
-   :init/tags #{:datomic/conn}
-   :init/stop-fn #'d/release}
+   :init/tags #{:datomic/conn}}
   [uri schema fixtures]
   (d/create-database uri)
   (let [conn (d/connect uri)]

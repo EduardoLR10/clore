@@ -97,11 +97,11 @@
     (fn [_] (reload/reload))
     (when (= mode :auto) (map io/file dirs))))
 
-#_(defn delete-datomic
-  "Takes a Datomic URI, stops the system and deletes the database.
+(defn delete-datomic
+ "Takes a Datomic URI, stops the system and deletes the database.
   Don't call this yourself, use hard-reset instead."
-  {:init/inject [:partial :datomic/uri]}
-  [uri]
-  (stop)
-  (await system)
-  (d/delete-database uri))
+ {:init/inject [:partial :datomic/uri]}
+ [uri]
+ (stop)
+ (await system)
+ (d/delete-database uri))
